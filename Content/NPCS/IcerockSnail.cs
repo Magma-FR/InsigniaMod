@@ -6,7 +6,7 @@ using Terraria.ModLoader.Utilities;
 using RealmOne.Items.Misc;
 using Terraria.GameContent.Bestiary;
 using Terraria.Audio;
-using RealmOne.Common.Systems;
+using InsigniaMod.Common.Systems;
 using Terraria.GameContent.ItemDropRules;
 
 namespace InsigniaMod.Content.NPCS
@@ -26,7 +26,7 @@ namespace InsigniaMod.Content.NPCS
             NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
         }
 	
-	public override string Texture => "InsigniaMod/Assets/NPCS/IcerockSnail";
+	public override string Texture => "InsigniaMod/Assets/NPCs/IcerockSnail";
 
         public override void SetDefaults()
         {
