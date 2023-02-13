@@ -16,6 +16,7 @@ namespace InsigniaMod.Content.NPCS
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Icerock Snail");
+	    
             Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.MagmaSnail];
 
             NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
@@ -24,6 +25,8 @@ namespace InsigniaMod.Content.NPCS
             };
             NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
         }
+	
+	public override string Texture => "InsigniaMod/Assets/NPCS/IcerockSnail";
 
         public override void SetDefaults()
         {
