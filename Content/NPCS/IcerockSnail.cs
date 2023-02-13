@@ -1,4 +1,4 @@
-﻿using Terraria.ModLoader;
+using Terraria.ModLoader;
 using Terraria;
 using Terraria.ID;
 using Microsoft.Xna.Framework;
@@ -9,7 +9,7 @@ using Terraria.Audio;
 using RealmOne.Common.Systems;
 using Terraria.GameContent.ItemDropRules;
 
-namespace RealmOne.Enemies
+namespace InsigniaMod.Content.NPCS
 {
     public class IcerockSnail : ModNPC
     {
@@ -42,8 +42,6 @@ namespace RealmOne.Enemies
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo) => spawnInfo.Player.ZoneSnow && spawnInfo.Player.ZoneOverworldHeight && Main.dayTime && !spawnInfo.PlayerSafe ? 0.0895f : 0f;
 
-
-
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
             // We can use AddRange instead of calling Add multiple times in order to add multiple items at once
@@ -62,10 +60,8 @@ namespace RealmOne.Enemies
         }
         public override void HitEffect(int hitDirection, double damage)
         {
-
             for (int i = 0; i < 10; i++)
             {
-
                 Vector2 speed = Main.rand.NextVector2CircularEdge(1f, 1f);
 
                 Dust d = Dust.NewDustPerfect(NPC.position, DustID.Ice, speed * 5, Scale: 2f); ;
@@ -73,16 +69,11 @@ namespace RealmOne.Enemies
 
             }
         }
-  
         public override void OnHitPlayer(Player target, int damage, bool crit)
         {
-            // Here we can make things happen if this NPC hits a player via its hitbox (not projectiles it shoots, this is handled in the projectile code usually)
-            // Common use is applying buffs/debuffs:
-
             int buffType = BuffID.Frozen;
-            // Alternatively, you can use a vanilla buff: int buffType = BuffID.Slow;
 
-            int timeToAdd = 2 * 60; //This makes it 5 seconds, one second is 60 ticks
+            int timeToAdd = 2 * 60; 
             target.AddBuff(buffType, timeToAdd);
         }
 
