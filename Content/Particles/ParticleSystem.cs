@@ -8,7 +8,7 @@ using TheJungleBeckonsF.Effects.Particles;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace TInsigniaMod.Content.Particles
+namespace InsigniaMod.Content.Particles
 {
     public static class ParticleSystem
     {
