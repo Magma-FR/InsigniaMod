@@ -28,7 +28,7 @@ namespace InsigniaMod.Content.Particles
                 Particle.Position += Particle.Velocity;
                 Particle.TimeLeft--;
                 Particle.Angle += Particle.AngularVelocity;
-                if (particles[particle].TimeLeft <= 0 && particles.Count >= maxParticles || Particle.Kill || Particle.Size <= 0.01f){
+                if (particles[particle].TimeLeft <= 0 || particles.Count >= maxParticles || Particle.Kill || Particle.Size <= 0.01f){
                     particles.RemoveAt(particle);
                     particle--;
                 }
