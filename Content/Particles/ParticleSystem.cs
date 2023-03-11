@@ -8,7 +8,7 @@ using TheJungleBeckonsF.Effects.Particles;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace InsigniaMod.Content.Particles
+namespace TInsigniaMod.Content.Particles
 {
     public static class ParticleSystem
     {
@@ -28,7 +28,7 @@ namespace InsigniaMod.Content.Particles
                 Particle.Position += Particle.Velocity;
                 Particle.TimeLeft--;
                 Particle.Angle += Particle.AngularVelocity;
-                if (particles[particle].TimeLeft <= 0 && particles.Count >= maxParticles || Particle.Kill){
+                if (particles[particle].TimeLeft <= 0 && particles.Count >= maxParticles || Particle.Kill || Particle.Size <= 0.01f){
                     particles.RemoveAt(particle);
                     particle--;
                 }
@@ -37,14 +37,17 @@ namespace InsigniaMod.Content.Particles
         public static void Draw()
         {
             foreach(Particle Particle in particles) {
-                string texturePath = "InsigniaMod/Content/Particles/" + Particle.TextureName;
-                Particle.Texture = (Texture2D)ModContent.Request<Texture2D>(texturePath, ReLogic.Content.AssetRequestMode.ImmediateLoad);
+                if (Particle == null || Particle.TextureName == null)
+                    continue;
 
+                string texturePath = "InsigniaMod/Content/Particles/" + Particle.TextureName;
+                Particle.Texture = ModContent.Request<Texture2D>(texturePath, ReLogic.Content.AssetRequestMode.ImmediateLoad).Value;
+
+                Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default,
+                    RasterizerState.CullNone, null, Main.GameViewMatrix.ZoomMatrix);
                 Main.EntitySpriteDraw(Particle.Texture, Particle.Position - Main.screenPosition, Particle.Texture.Bounds, Particle.Color,
                     Particle.Angle, Particle.Texture.Size() / 2, Particle.Size, SpriteEffects.None, default);
-                
-                if (Particle == null)
-                    continue;
+                Main.spriteBatch.End();
             }
         }
         public static void AnimateFromVerticalSpritesheet(Particle particle, int numberOfFrames, int animSpeed = 5, int? animTimer = null)
