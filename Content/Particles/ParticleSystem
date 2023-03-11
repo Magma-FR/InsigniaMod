@@ -37,7 +37,6 @@ namespace TheJungleBeckonsF.Effects.Particles
         public static void Draw()
         {
             foreach(Particle Particle in particles) {
-                //Particle Particle = particles[particle];
                 string texturePath = "InsigniaMod/Content/Particles/" + Particle.TextureName;
                 Particle.Texture = (Texture2D)ModContent.Request<Texture2D>(texturePath, ReLogic.Content.AssetRequestMode.ImmediateLoad);
 
